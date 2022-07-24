@@ -4,6 +4,7 @@ import ControlsSwitcher from "./ControlsSwitcher/ControlsSwitcher";
 
 import classes from "./Device.module.scss";
 import Switch from "./../UI/Switch/Switch";
+import {switchValue} from "../../utils/api/rooms.api";
 
 export default class Device extends Component {
   static propTypes = {
@@ -18,8 +19,12 @@ export default class Device extends Component {
    */
   onControlValueChangedHandler = (controlId, newValue) => {
     this.props.onControlValueChanged(this.props.deviceId, controlId, newValue);
+      console.log('aa',newValue)
   };
-
+  onControlSwitch =()=>{
+      this.props.onToggleDeviceSwitch()
+      switchValue(7).then()
+  }
   render() {
     if (!this.props.device) return;
 
@@ -53,7 +58,7 @@ export default class Device extends Component {
           <div className={classes.Title}>{this.props.device.name}</div>
           <div className={classes.Switch}>
             <Switch
-              onChange={this.props.onToggleDeviceSwitch}
+              onChange={this.onControlSwitch}
               checked={this.props.device.switch}
             />
           </div>

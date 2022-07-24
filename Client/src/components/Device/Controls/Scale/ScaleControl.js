@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import classes from "./ScaleControl.module.scss";
+import {changeVane} from "../../../../utils/api/rooms.api";
 
 export default class ScaleControl extends Component {
   static propTypes = {
@@ -18,6 +19,8 @@ export default class ScaleControl extends Component {
     const updatedValue = event.target.value;
     if (updatedValue !== this.props.value) {
       this.props.onUpdateValue(this.props.controlId, parseInt(updatedValue));
+      changeVane(7,parseInt(updatedValue)).then()
+      console.log('aaa')
     }
   };
 

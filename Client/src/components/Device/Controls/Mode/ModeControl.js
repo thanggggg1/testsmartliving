@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import classes from "./ModeControl.module.scss";
+import {changeMode, changeVane} from "../../../../utils/api/rooms.api";
 
 export default class ModeControl extends Component {
   static propTypes = {
@@ -17,8 +18,12 @@ export default class ModeControl extends Component {
     const updatedValue = event.target.value;
     if (updatedValue !== this.props.value) {
       this.props.onUpdateValue(this.props.controlId, updatedValue);
+      console.log('updated value',this.props,updatedValue)
+        changeMode(7,updatedValue).then()
+      changeVane(7,updatedValue).then()
     }
   };
+
 
   render() {
     if (!this.props.options) return null;
